@@ -35,7 +35,8 @@ def emulation_loop(workflows, clustersize, taskinterval, taskgroupinterval, extr
                 workflows[index].action(extra)
             sleep(random.randrange(taskgroupinterval))
         else:
-            SLEEPYTIME = randint(21600,36000)
+            #SLEEP ANYWHERE FROm 4-12 HOURS AFTER 10PM
+            SLEEPYTIME = randint(14400,43200)
             print("SLEEPING FOR",SLEEPYTIME,"SECONDS")
             sleep(SLEEPYTIME)
 
