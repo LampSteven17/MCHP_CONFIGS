@@ -1,9 +1,10 @@
 from selenium import webdriver
-from selenium.webdriver.firefox.service import Service
+from selenium.webdriver.firefox.service import Service as FirefoxService
+from webdriver_manager.firefox import GeckoDriverManager
 
 from .base_driver import BaseDriverHelper
 
-DRIVER_NAME = 'geckodriver'
+DRIVER_NAME = 'geckowebdriver'
 
 class WebDriverHelper(BaseDriverHelper):
 
@@ -15,8 +16,8 @@ class WebDriverHelper(BaseDriverHelper):
 
     def __init__(self):
         super().__init__(name=DRIVER_NAME)
-        self._driver_path = Service()
-        self._driver = webdriver.Firefox(self.options, self._driver_path)
+        self._driver_path = FirefoxService(GeckoDriverManager().install())
+        self._driver = webdriver.Firefox(service=self._driver_path, options=self.options) 
 
     @property
     def driver(self):
