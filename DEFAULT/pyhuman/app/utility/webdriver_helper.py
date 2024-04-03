@@ -3,7 +3,7 @@ from selenium.webdriver.firefox.service import Service
 
 from .base_driver import BaseDriverHelper
 
-DRIVER_NAME = '/home/ubuntu/geckodriver'
+DRIVER_NAME = 'geckodriver'
 
 class WebDriverHelper(BaseDriverHelper):
 
