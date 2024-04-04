@@ -3,5 +3,10 @@ Description=MCHP Default configuration systemctl service
 After=network.target
 
 [Service]
-User=USER=rpi5_02
-WorkingDirectory=/home/$USER/MCHP_
+User=ubuntu
+WorkingDirectory=/home/ubuntu/
+ExecStart=xvfb-run -a /home/ubuntu/mchp/bin/python3 /home/ubuntu/MCHP_CONFIGS/DEFAULT/pyhuman/human.py > $(date "+%Y-%m-%d_%H-%M-%S").mchp.log
+Restart=always 
+
+[Install]
+WantedBy=multi-user.target
