@@ -19,9 +19,9 @@ cd ~/
 
 mkdir /home/ubuntu/LOGS
 
-sudo apt-get update -y
-sudo apt-get upgrade -y
-sudo apt-get dist-upgrade -y
+#sudo apt-get update -y
+#sudo apt-get upgrade -y
+#sudo apt-get dist-upgrade -y
 
 mkdir ~/Downloads
 sudo apt-get install python3-venv python3-pip -y
@@ -43,14 +43,15 @@ python3 -m pip install selenium bs4 webdriver-manager lxml
 # Loop through all the positional parameters
 while [ ! -z "$1" ]; do
     case "$1" in
+
         --raspi64)
             # Action for option1
             echo "Downloading Geckodriver for ARMv7l"
             wget https://github.com/jamesmortensen/geckodriver-arm-binaries/releases/download/v0.34.0/geckodriver-v0.34.0-linux-armv7l.tar.gz
             tar -xvzf geckodriver-v0.34.0-linux-armv7l.tar.gz
             rm -f geckodriver-v0.34.0-linux-armv7l.tar.gz
-
             ;;
+
         --default)
             # Action for DEFAULT CONFIGURATION
             echo "MOVING AND ENABLING SERVICE"
@@ -59,6 +60,17 @@ while [ ! -z "$1" ]; do
             sudo systemctl enable --now default_mchp
             sudo systemctl status default_mchp
             ;;
+
+        --sleepy)
+            # Action for SLEEPY CONFIGURATION
+            echo "MOVING AND ENABLING SERVICE"
+            echo "xvfb-run -a /home/ubuntu/mchp/bin/python3 /home/ubuntu/MCHP_CONFIGS/SLEEPY/pyhuman/human.py >> /home/ubuntu/LOGS/$(date '+%Y-%m-%d_%H-%M-%S').mchp.log" > /home/ubuntu/run_mchp.sh
+            sudo cp /home/ubuntu/MCHP_CONFIGS/SLEEPY/sleepy_mchp.service /etc/systemd/system/
+            sudo systemctl enable --now sleepy_mchp
+            sudo systemctl status sleepy_mchp
+            ;;
+            
+
         --help)
             # Display usage information
             usage

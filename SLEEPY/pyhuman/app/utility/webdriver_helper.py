@@ -1,27 +1,25 @@
 from selenium import webdriver
-from selenium.webdriver.firefox.service import Service
+from selenium.webdriver.firefox.service import Service as FirefoxService
+from webdriver_manager.firefox import GeckoDriverManager
 
 from .base_driver import BaseDriverHelper
 
-DRIVER_NAME = '/home/ubuntu/geckodriver'
+DRIVER_NAME = 'geckowebdriver'
 
 class WebDriverHelper(BaseDriverHelper):
 
     options = webdriver.FirefoxOptions()
-    options.add_argument("--disable-gpu")
-    options.add_argument('--ignore-certificate-errors')
-    options.add_argument("--start-maximized")
-    options.add_argument("--disable-infobars")
+    options.add_argument("--headless=new")
 
     def __init__(self):
         super().__init__(name=DRIVER_NAME)
-        self._driver_path = Service()
-        self._driver = webdriver.Firefox(self.options, self._driver_path)
+        self._driver_path = FirefoxService(executable_path="geckodriver")#GeckoDriverManager().install())
+        self._driver = webdriver.Firefox(service=self._driver_path, options=self.options) 
 
     @property
     def driver(self):
         return self._driver
-    
+
     def cleanup(self):
         self._driver.quit()
 
@@ -35,4 +33,3 @@ class WebDriverHelper(BaseDriverHelper):
         except Exception as e:
             print('Could not load geckodriver: %s'.format(e))
             return False
-
