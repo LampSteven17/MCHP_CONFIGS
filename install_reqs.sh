@@ -1,7 +1,5 @@
 #!/bin/bash
 
-cd ~/
-
 # Function to display usage information
 usage() {
     echo "Usage: $0 [options]"
@@ -16,35 +14,8 @@ if [ $# -eq 0 ]; then
     exit 1
 fi
 
-# Loop through all the positional parameters
-while [ ! -z "$1" ]; do
-    case "$1" in
-        --raspi64)
-            # Action for option1
-            echo "Downloading Geckodriver for ARMv7l"
-            wget https://github.com/jamesmortensen/geckodriver-arm-binaries/releases/download/v0.34.0/geckodriver-v0.34.0-linux-armv7l.tar.gz
-            tar -xvzf geckodriver-v0.34.0-linux-armv7l.tar.gz
-            rm -f geckodriver-v0.34.0-linux-armv7l.tar.gz
 
-            ;;
-        --default)
-            # Action for option2
-            echo "Option 2 selected"
-            ;;
-        --help)
-            # Display usage information
-            usage
-            ;;
-        *)
-            # Unknown option
-            echo "Unknown option: $1"
-            usage
-            exit 1
-            ;;
-    esac
-    shift
-done
-
+cd ~/
 
 sudo apt-get update -y
 sudo apt-get upgrade -y
@@ -64,4 +35,39 @@ source mchp/bin/activate
 
 echo "INSTALLING PYTHON PACKAGES"
 
-python3 -m pip install selenium bs4 webdriver-manager lxml 
+python3 -m pip install selenium bs4 webdriver-manager lxml
+
+
+# Loop through all the positional parameters
+while [ ! -z "$1" ]; do
+    case "$1" in
+        --raspi64)
+            # Action for option1
+            echo "Downloading Geckodriver for ARMv7l"
+            wget https://github.com/jamesmortensen/geckodriver-arm-binaries/releases/download/v0.34.0/geckodriver-v0.34.0-linux-armv7l.tar.gz
+            tar -xvzf geckodriver-v0.34.0-linux-armv7l.tar.gz
+            rm -f geckodriver-v0.34.0-linux-armv7l.tar.gz
+
+            ;;
+        --default)
+            # Action for DEFAULT CONFIGURATION
+            echo "MOVING AND ENABLING SERVICE"
+            sudo cp /home/ubuntu/MCHP_CONFIGS/DEFAULT/default_mchp.service /etc/ystemd/system/
+            sudo systemctl enable --now default_mchp
+            sudo systemctl status
+            ;;
+        --help)
+            # Display usage information
+            usage
+            ;;
+        *)
+            # Unknown option
+            echo "Unknown option: $1"
+            usage
+            exit 1
+            ;;
+    esac
+    shift
+done
+
+ 
