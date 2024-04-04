@@ -1,12 +1,15 @@
 [Unit]
-Description=MCHP Default configuration systemctl service 
+Description=MCHP Default configuration systemctl service
 After=network.target
 
 [Service]
+Type=simple
 User=ubuntu
 WorkingDirectory=/home/ubuntu/
-ExecStart=xvfb-run -a /home/ubuntu/mchp/bin/python3 /home/ubuntu/MCHP_CONFIGS/DEFAULT/pyhuman/human.py > $(date "+%Y-%m-%d_%H-%M-%S").mchp.log
-Restart=always 
+ExecStart=/bin/bash /home/ubuntu/run_mchp.sh
+Restart=on-failure
+RestartSec=5s
 
 [Install]
 WantedBy=multi-user.target
+~                            

@@ -17,6 +17,8 @@ fi
 
 cd ~/
 
+mkdir LOGS
+
 sudo apt-get update -y
 sudo apt-get upgrade -y
 sudo apt-get dist-upgrade -y
@@ -52,9 +54,10 @@ while [ ! -z "$1" ]; do
         --default)
             # Action for DEFAULT CONFIGURATION
             echo "MOVING AND ENABLING SERVICE"
-            sudo cp /home/ubuntu/MCHP_CONFIGS/DEFAULT/default_mchp.service /etc/ystemd/system/
+            echo "xvfb-run -a /home/ubuntu/mchp/bin/python3 /home/ubuntu/MCHP_CONFIGS/DEFAULT/pyhuman/human.py >> /home/ubuntu/LOGS/$(date '+%Y-%m-%d_%H-%M-%S').mchp.log" > /home/ubuntu/run_mchp.sh
+            sudo cp /home/ubuntu/MCHP_CONFIGS/DEFAULT/default_mchp.service /etc/systemd/system/
             sudo systemctl enable --now default_mchp
-            sudo systemctl status
+            sudo systemctl status default_mchp
             ;;
         --help)
             # Display usage information
