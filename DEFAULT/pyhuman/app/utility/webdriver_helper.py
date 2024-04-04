@@ -9,14 +9,11 @@ DRIVER_NAME = 'geckowebdriver'
 class WebDriverHelper(BaseDriverHelper):
 
     options = webdriver.FirefoxOptions()
-    options.add_argument("--disable-gpu")
-    options.add_argument('--ignore-certificate-errors')
-    options.add_argument("--start-maximized")
-    options.add_argument("--disable-infobars")
+    options.add_argument("--headless=new")
 
     def __init__(self):
         super().__init__(name=DRIVER_NAME)
-        self._driver_path = FirefoxService(GeckoDriverManager().install())
+        self._driver_path = FirefoxService(executable_path="geckodriver")#GeckoDriverManager().install())
         self._driver = webdriver.Firefox(service=self._driver_path, options=self.options) 
 
     @property
