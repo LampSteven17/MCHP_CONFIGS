@@ -17,7 +17,7 @@ fi
 
 cd ~/
 
-mkdir LOGS
+mkdir /home/ubuntu/LOGS
 
 sudo apt-get update -y
 sudo apt-get upgrade -y
