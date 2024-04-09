@@ -55,7 +55,7 @@ while [ ! -z "$1" ]; do
         --default)
             # Action for DEFAULT CONFIGURATION
             echo "MOVING AND ENABLING SERVICE"
-            echo "xvfb-run -a /home/ubuntu/mchp/bin/python3 /home/ubuntu/MCHP_CONFIGS/DEFAULT/pyhuman/human.py >> /home/ubuntu/LOGS/$(date '+%Y-%m-%d_%H-%M-%S').mchp.log" > /home/ubuntu/run_mchp.sh
+            echo "xvfb-run -a /home/ubuntu/mchp/bin/python3 /home/ubuntu/MCHP_CONFIGS/DEFAULT/pyhuman/human.py >> /home/ubuntu/LOGS/\$(date '+%Y-%m-%d_%H-%M-%S').mchp.log" > /home/ubuntu/run_mchp.sh
             sudo cp /home/ubuntu/MCHP_CONFIGS/DEFAULT/default_mchp.service /etc/systemd/system/
             sudo systemctl enable --now default_mchp
             sudo systemctl status default_mchp
@@ -64,7 +64,7 @@ while [ ! -z "$1" ]; do
         --sleepy)
             # Action for SLEEPY CONFIGURATION
             echo "MOVING AND ENABLING SERVICE"
-            echo "xvfb-run -a /home/ubuntu/mchp/bin/python3 /home/ubuntu/MCHP_CONFIGS/SLEEPY/pyhuman/human.py >> /home/ubuntu/LOGS/$(date '+%Y-%m-%d_%H-%M-%S').mchp.log" > /home/ubuntu/run_mchp.sh
+            echo "xvfb-run -a /home/ubuntu/mchp/bin/python3 /home/ubuntu/MCHP_CONFIGS/SLEEPY/pyhuman/human.py >> /home/ubuntu/LOGS/\$(date '+%Y-%m-%d_%H-%M-%S').mchp.log" > /home/ubuntu/run_mchp.sh
             sudo cp /home/ubuntu/MCHP_CONFIGS/SLEEPY/sleepy_mchp.service /etc/systemd/system/
             sudo systemctl enable --now sleepy_mchp
             sudo systemctl status sleepy_mchp
