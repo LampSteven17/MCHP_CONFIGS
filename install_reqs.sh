@@ -69,6 +69,15 @@ while [ ! -z "$1" ]; do
             sudo systemctl enable --now sleepy_mchp
             sudo systemctl status sleepy_mchp
             ;;
+
+        --dopey)
+            # Action for SLEEPY CONFIGURATION
+            echo "MOVING AND ENABLING SERVICE"
+            echo "xvfb-run -a /home/ubuntu/mchp/bin/python3 /home/ubuntu/MCHP_CONFIGS/DOPEY/pyhuman/human.py >> /home/ubuntu/LOGS/\$(date '+%Y-%m-%d_%H-%M-%S').mchp.log" > /home/ubuntu/run_mchp.sh
+            sudo cp /home/ubuntu/MCHP_CONFIGS/DOPEY/dopey_mchp.service /etc/systemd/system/
+            sudo systemctl enable --now dopey_mchp
+            sudo systemctl status dopey_mchp
+            ;;
             
 
         --help)
