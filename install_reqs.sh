@@ -42,17 +42,25 @@ python3 -m pip install selenium bs4 webdriver-manager lxml
 # Loop through all the positional parameters
 while [ ! -z "$1" ]; do
     case "$1" in
+        --linux64_chrome)
+            #BROWSER CONFIG
+            wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | sudo apt-key add -
+            sudo add-apt-repository "deb http://dl.google.com/linux/chrome/deb/ stable main" -y
+            sudo apt-get update -y
+            sudo apt-get install google-chrome-stable -y
 
         --linux64_firefox)
-            # Action for option1
+            sudo apt-get install firefox -y
             echo "Downloading Geckodriver for Linux x86-64"
             wget https://github.com/mozilla/geckodriver/releases/download/v0.34.0/geckodriver-v0.34.0-linux64.tar.gz
             tar -xvzf geckodriver-v0.34.0-linux64.tar.gz
             rm -f geckodriver-v0.34.0-linux64.tar.gz
             ;;
 
-        --raspi64_firefox)
-            # Action for option1
+
+        --armv7_firefox)
+            sudo apt-get install firefox -y
+
             echo "Downloading Geckodriver for ARMv7l"
             wget https://github.com/jamesmortensen/geckodriver-arm-binaries/releases/download/v0.34.0/geckodriver-v0.34.0-linux-armv7l.tar.gz
             tar -xvzf geckodriver-v0.34.0-linux-armv7l.tar.gz
@@ -60,9 +68,6 @@ while [ ! -z "$1" ]; do
             ;;
 
         --default)
-            #BROWSER CONFIG
-            sudo apt-get install firefox -y
-
             # Action for DEFAULT CONFIGURATION
             echo "MOVING AND ENABLING SERVICE"
             echo "xvfb-run -a /home/ubuntu/mchp/bin/python3 /home/ubuntu/MCHP_CONFIGS/DEFAULT/pyhuman/human.py >> /home/ubuntu/LOGS/\$(date '+%Y-%m-%d_%H-%M-%S').mchp.log" > /home/ubuntu/run_mchp.sh
@@ -72,9 +77,6 @@ while [ ! -z "$1" ]; do
             ;;
 
         --sleepy)
-            #BROWSER CONFIG
-            sudo apt-get install firefox -y
-
             # Action for SLEEPY CONFIGURATION
             echo "MOVING AND ENABLING SERVICE"
             echo "xvfb-run -a /home/ubuntu/mchp/bin/python3 /home/ubuntu/MCHP_CONFIGS/SLEEPY/pyhuman/human.py >> /home/ubuntu/LOGS/\$(date '+%Y-%m-%d_%H-%M-%S').mchp.log" > /home/ubuntu/run_mchp.sh
@@ -84,9 +86,6 @@ while [ ! -z "$1" ]; do
             ;;
 
         --dopey)
-            #BROWSER CONFIG
-            sudo apt-get install firefox -y
-
             # Action for SLEEPY CONFIGURATION
             echo "MOVING AND ENABLING SERVICE"
             echo "xvfb-run -a /home/ubuntu/mchp/bin/python3 /home/ubuntu/MCHP_CONFIGS/DOPEY/pyhuman/human.py >> /home/ubuntu/LOGS/\$(date '+%Y-%m-%d_%H-%M-%S').mchp.log" > /home/ubuntu/run_mchp.sh
@@ -96,12 +95,6 @@ while [ ! -z "$1" ]; do
             ;;
 
         --grumpy)
-            #BROWSER CONFIG
-            wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | sudo apt-key add -
-            sudo add-apt-repository "deb http://dl.google.com/linux/chrome/deb/ stable main"
-            sudo apt-get update -y
-            sudo apt-get install google-chrome-stable -y
-
             # Action for SLEEPY CONFIGURATION
             echo "MOVING AND ENABLING SERVICE"
             echo "xvfb-run -a /home/ubuntu/mchp/bin/python3 /home/ubuntu/MCHP_CONFIGS/GRUMPY/pyhuman/human.py >> /home/ubuntu/LOGS/\$(date '+%Y-%m-%d_%H-%M-%S').mchp.log" > /home/ubuntu/run_mchp.sh
