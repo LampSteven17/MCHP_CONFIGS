@@ -25,7 +25,6 @@ mkdir /home/ubuntu/LOGS
 
 mkdir ~/Downloads
 sudo apt-get install python3-venv python3-pip -y
-sudo apt-get install firefox -y
 sudo apt-get install xvfb -y
 sudo apt-get install xdg-utils -y
 sudo apt-get install libxml2-dev libxslt-dev -y
@@ -61,6 +60,9 @@ while [ ! -z "$1" ]; do
             ;;
 
         --default)
+            #BROWSER CONFIG
+            sudo apt-get install firefox -y
+
             # Action for DEFAULT CONFIGURATION
             echo "MOVING AND ENABLING SERVICE"
             echo "xvfb-run -a /home/ubuntu/mchp/bin/python3 /home/ubuntu/MCHP_CONFIGS/DEFAULT/pyhuman/human.py >> /home/ubuntu/LOGS/\$(date '+%Y-%m-%d_%H-%M-%S').mchp.log" > /home/ubuntu/run_mchp.sh
@@ -70,6 +72,9 @@ while [ ! -z "$1" ]; do
             ;;
 
         --sleepy)
+            #BROWSER CONFIG
+            sudo apt-get install firefox -y
+
             # Action for SLEEPY CONFIGURATION
             echo "MOVING AND ENABLING SERVICE"
             echo "xvfb-run -a /home/ubuntu/mchp/bin/python3 /home/ubuntu/MCHP_CONFIGS/SLEEPY/pyhuman/human.py >> /home/ubuntu/LOGS/\$(date '+%Y-%m-%d_%H-%M-%S').mchp.log" > /home/ubuntu/run_mchp.sh
@@ -79,12 +84,30 @@ while [ ! -z "$1" ]; do
             ;;
 
         --dopey)
+            #BROWSER CONFIG
+            sudo apt-get install firefox -y
+
             # Action for SLEEPY CONFIGURATION
             echo "MOVING AND ENABLING SERVICE"
             echo "xvfb-run -a /home/ubuntu/mchp/bin/python3 /home/ubuntu/MCHP_CONFIGS/DOPEY/pyhuman/human.py >> /home/ubuntu/LOGS/\$(date '+%Y-%m-%d_%H-%M-%S').mchp.log" > /home/ubuntu/run_mchp.sh
             sudo cp /home/ubuntu/MCHP_CONFIGS/DOPEY/dopey_mchp.service /etc/systemd/system/
             sudo systemctl enable --now dopey_mchp
             sudo systemctl status dopey_mchp
+            ;;
+
+        --grumpy)
+            #BROWSER CONFIG
+            wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | sudo apt-key add -
+            sudo add-apt-repository "deb http://dl.google.com/linux/chrome/deb/ stable main"
+            sudo apt-get update -y
+            sudo apt-get install google-chrome-stable -y
+
+            # Action for SLEEPY CONFIGURATION
+            echo "MOVING AND ENABLING SERVICE"
+            echo "xvfb-run -a /home/ubuntu/mchp/bin/python3 /home/ubuntu/MCHP_CONFIGS/GRUMPY/pyhuman/human.py >> /home/ubuntu/LOGS/\$(date '+%Y-%m-%d_%H-%M-%S').mchp.log" > /home/ubuntu/run_mchp.sh
+            sudo cp /home/ubuntu/MCHP_CONFIGS/GRUMPY/grumpy_mchp.service /etc/systemd/system/
+            sudo systemctl enable --now grumpy_mchp
+            sudo systemctl status grumpy_mchp
             ;;
             
 
