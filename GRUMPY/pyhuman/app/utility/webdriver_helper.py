@@ -13,7 +13,7 @@ class WebDriverHelper(BaseDriverHelper):
 
     def __init__(self):
         super().__init__(name=DRIVER_NAME)
-        self._driver_path = ChromeService(GeckoDriverManager().install())#executable_path="geckodriver")
+        self._driver_path = ChromeService(ChromeDriverManager().install())#executable_path="geckodriver")
         self._driver = webdriver.Chrome(service=self._driver_path, options=self.options) 
 
     @property
