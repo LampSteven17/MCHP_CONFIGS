@@ -43,7 +43,7 @@ python3 -m pip install selenium bs4 webdriver-manager lxml
 while [ ! -z "$1" ]; do
     case "$1" in
 
-        --linux64)
+        --linux64_firefox)
             # Action for option1
             echo "Downloading Geckodriver for Linux x86-64"
             wget https://github.com/mozilla/geckodriver/releases/download/v0.34.0/geckodriver-v0.34.0-linux64.tar.gz
@@ -51,7 +51,7 @@ while [ ! -z "$1" ]; do
             rm -f geckodriver-v0.34.0-linux64.tar.gz
             ;;
 
-        --raspi64)
+        --raspi64_firefox)
             # Action for option1
             echo "Downloading Geckodriver for ARMv7l"
             wget https://github.com/jamesmortensen/geckodriver-arm-binaries/releases/download/v0.34.0/geckodriver-v0.34.0-linux-armv7l.tar.gz
