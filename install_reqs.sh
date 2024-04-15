@@ -48,6 +48,7 @@ while [ ! -z "$1" ]; do
             sudo add-apt-repository "deb http://dl.google.com/linux/chrome/deb/ stable main" -y
             sudo apt-get update -y
             sudo apt-get install google-chrome-stable -y
+            ;;
 
         --linux64_firefox)
             sudo apt-get install firefox -y
