@@ -109,7 +109,7 @@ while [ ! -z "$1" ]; do
             # Action for SLEEPY CONFIGURATION
             echo "MOVING AND ENABLING SERVICE"
             echo "xvfb-run -a /home/ubuntu/mchp/bin/python3 /home/ubuntu/MCHP_CONFIGS/HAPPY/pyhuman/human.py >> /home/ubuntu/LOGS/\$(date '+%Y-%m-%d_%H-%M-%S').mchp.log" > /home/ubuntu/run_mchp.sh
-            sudo cp /home/ubuntu/MCHP_CONFIGS/HAPPY/grumpy_mchp.service /etc/systemd/system/
+            sudo cp /home/ubuntu/MCHP_CONFIGS/HAPPY/happy_mchp.service /etc/systemd/system/
             sudo systemctl enable --now happy_mchp
             sudo systemctl status happy_mchp
             ;;
@@ -120,7 +120,7 @@ while [ ! -z "$1" ]; do
             # Action for DOPEY/SNEEZY CONFIGURATION
             echo "MOVING AND ENABLING SERVICE"
             echo "xvfb-run -a /home/ubuntu/mchp/bin/python3 /home/ubuntu/MCHP_CONFIGS/SNEEZY/pyhuman/human.py >> /home/ubuntu/LOGS/\$(date '+%Y-%m-%d_%H-%M-%S').mchp.log" > /home/ubuntu/run_mchp.sh
-            sudo cp /home/ubuntu/MCHP_CONFIGS/HAPPY/sneezy_mchp.service /etc/systemd/system/
+            sudo cp /home/ubuntu/MCHP_CONFIGS/SNEEZY/sneezy_mchp.service /etc/systemd/system/
             sudo systemctl enable --now sneezy_mchp
             sudo systemctl status sneezy_mchp
             ;;
