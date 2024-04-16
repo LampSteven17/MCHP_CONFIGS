@@ -15,10 +15,24 @@ if [ $# -eq 0 ]; then
 fi
 
 
-cd ~/
+installDir=$(echo $HOME)
+user=$(echo $USER)
 
-mkdir ~/LOGS
-mkdir ~/Downloads
+for arg in "$@"
+do
+    if [[ $arg == --installpath=* ]]; then
+        # Extract the value after "="
+        installDir="${arg#*=}"
+    fi
+
+    echo "MCHP WILL BE INSTALLED AT $installDir"
+
+done
+
+cd $installDir
+
+mkdir $installDir/LOGS
+mkdir $installDir/Downloads
 
 
 
@@ -42,9 +56,14 @@ echo "INSTALLING PYTHON PACKAGES"
 python3 -m pip install selenium bs4 webdriver-manager lxml
 
 
+printf "[Unit]\nDescription=MCHP Default configuration systemctl service\nAfter=network.target\n\n[Service]\nType=simple\nUser=${user}\nWorkingDirectory=${installDir}\nExecStart=/bin/bash ${installDir}/run_mchp.sh\nRestart=on-failure\nRestartSec=5s\n\n[Install]\nWantedBy=multi-user.target" >> $installDir/mchp.service
+
+
+
 # Loop through all the positional parameters
 while [ ! -z "$1" ]; do
     case "$1" in
+
         --linux64_chrome)
             #BROWSER CONFIG
             wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | sudo apt-key add -
@@ -61,7 +80,6 @@ while [ ! -z "$1" ]; do
             rm -f geckodriver-v0.34.0-linux64.tar.gz
             ;;
 
-
         --armv7_firefox)
             sudo apt-get install firefox -y
             echo "Downloading Geckodriver for ARMv7l"
@@ -70,31 +88,20 @@ while [ ! -z "$1" ]; do
             rm -f geckodriver-v0.34.0-linux-armv7l.tar.gz
             ;;
 
+
+
+
+
         --default)
             # Action for DEFAULT CONFIGURATION
-            echo "MOVING AND ENABLING SERVICE"
-            echo "xvfb-run -a ~/mchp/bin/python3 ~/MCHP_CONFIGS/DEFAULT/pyhuman/human.py >> /home/ubuntu/LOGS/\$(date '+%Y-%m-%d_%H-%M-%S').mchp.log" > /home/ubuntu/run_mchp.sh
-            sudo cp /home/ubuntu/MCHP_CONFIGS/DEFAULT/default_mchp.service /etc/systemd/system/
-            sudo systemctl enable --now default_mchp
-            sudo systemctl status default_mchp
+            echo "INSTALLING DEFAULT MCHP COMMAND IN $installDir/run_mchp.sh"
+            echo "xvfb-run -a $installDir/mchp/bin/python3 $installDir/MCHP_CONFIGS/DEFAULT/pyhuman/human.py >> $installDir/LOGS/\$(date '+%Y-%m-%d_%H-%M-%S').mchp.log" > $installDir/run_mchp.sh
             ;;
 
         --sleepy)
-            # Action for SLEEPY CONFIGURATION
-            echo "MOVING AND ENABLING SERVICE"
-            echo "xvfb-run -a ~/mchp/bin/python3 ~/MCHP_CONFIGS/SLEEPY/pyhuman/human.py >> ~/LOGS/\$(date '+%Y-%m-%d_%H-%M-%S').mchp.log" > ~/run_mchp.sh
-            sudo cp ~/MCHP_CONFIGS/SLEEPY/sleepy_mchp.service /etc/systemd/system/
-            sudo systemctl enable --now sleepy_mchp
-            sudo systemctl status sleepy_mchp
             ;;
 
         --dopey)
-            # Action for SLEEPY CONFIGURATION
-            echo "MOVING AND ENABLING SERVICE"
-            echo "xvfb-run -a ~/mchp/bin/python3 ~/MCHP_CONFIGS/DOPEY/pyhuman/human.py >> ~/LOGS/\$(date '+%Y-%m-%d_%H-%M-%S').mchp.log" > ~/run_mchp.sh
-            sudo cp ~/MCHP_CONFIGS/DOPEY/dopey_mchp.service /etc/systemd/system/
-            sudo systemctl enable --now dopey_mchp
-            sudo systemctl status dopey_mchp
             ;;
             
             
@@ -113,4 +120,8 @@ while [ ! -z "$1" ]; do
     shift
 done
 
+echo "ENABLING SYSTEMCTL"
+sudo cp $installDir/mchp.service /etc/systemd/system/
+sudo systemctl enable --now mchp
+sudo systemctl status mchp
  
