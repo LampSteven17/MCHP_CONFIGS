@@ -45,6 +45,7 @@ sudo apt-get install python3-venv python3-pip -y
 sudo apt-get install xvfb -y
 sudo apt-get install xdg-utils -y
 sudo apt-get install libxml2-dev libxslt-dev -y
+sudo apt-get install python3-tk python3-dev -y
 
 echo "CREATING PYTHON3 ENVIROMENT MCHP"
 
@@ -53,7 +54,7 @@ source mchp/bin/activate
 
 echo "INSTALLING PYTHON PACKAGES"
 
-python3 -m pip install selenium bs4 webdriver-manager lxml
+python3 -m pip install selenium bs4 webdriver-manager lxml pyautogui lorem
 
 
 printf "[Unit]\nDescription=MCHP Default configuration systemctl service\nAfter=network.target\n\n[Service]\nType=simple\nUser=${user}\nWorkingDirectory=${installDir}\nExecStart=/bin/bash ${installDir}/run_mchp.sh\nRestart=on-failure\nRestartSec=5s\n\n[Install]\nWantedBy=multi-user.target" >> $installDir/mchp.service
