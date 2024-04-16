@@ -16,8 +16,8 @@ class WebDriverHelper(BaseDriverHelper):
         if (os.path.exists("geckodriver")):
             try:
                 DRIVER_NAME = 'geckowebdriver' 
-                options = webdriver.FirefoxOptions()
-                options.add_argument("--headless=new")
+                self.options = webdriver.FirefoxOptions()
+                self.options.add_argument("--headless=new")
 
                 super().__init__(name=DRIVER_NAME)
                 self._driver_path = FirefoxService(executable_path="geckodriver")
@@ -33,6 +33,8 @@ class WebDriverHelper(BaseDriverHelper):
             print("USING CHROME FOR MAIN WEBDRIVER")
             try:
                 DRIVER_NAME = 'chromewebdriver'
+                self.options = webdriver.ChromeOptions()
+                self.options.add_argument("--headless=new")
                 
 
                 super().__init__(name=DRIVER_NAME)
