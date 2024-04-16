@@ -1,0 +1,14 @@
+[Unit]
+Description=MCHP HAPPY configuration systemctl service
+After=network.target
+
+[Service]
+Type=simple
+User=ubuntu
+WorkingDirectory=/home/ubuntu/
+ExecStart=/bin/bash /home/ubuntu/run_mchp.sh
+Restart=on-failure
+RestartSec=5s
+
+[Install]
+WantedBy=multi-user.target                        

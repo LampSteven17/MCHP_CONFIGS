@@ -24,6 +24,9 @@ mkdir /home/ubuntu/LOGS
 #sudo apt-get dist-upgrade -y
 
 mkdir ~/Downloads
+sudo add-apt-repository ppa:libreoffice/ppa -y
+sudo apt-get upgrade -y 
+sudo apt-get install libreoffice-core -y
 sudo apt-get install python3-venv python3-pip -y
 sudo apt-get install xvfb -y
 sudo apt-get install xdg-utils -y

