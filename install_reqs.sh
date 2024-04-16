@@ -34,12 +34,6 @@ cd $installDir
 mkdir $installDir/LOGS
 mkdir $installDir/Downloads
 
-
-
-sudo add-apt-repository ppa:libreoffice/ppa -y
-sudo apt-get upgrade -y 
-sudo apt-get install libreoffice-core -y
-
 sudo apt-get install python3-venv python3-pip -y
 
 sudo apt-get install xvfb -y
