@@ -13,7 +13,7 @@ class WebDriverHelper(BaseDriverHelper):
 
     def __init__(self):
 
-        if (os.path.exists("~/geckodriver")):
+        if (os.path.exists("geckodriver")):
             try:
                 DRIVER_NAME = 'geckowebdriver' 
                 options = webdriver.FirefoxOptions()
@@ -30,6 +30,7 @@ class WebDriverHelper(BaseDriverHelper):
                 return False
 
         else:
+            print("USING CHROME FOR MAIN WEBDRIVER")
             try:
                 DRIVER_NAME = 'chromewebdriver'
                 
