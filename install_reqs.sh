@@ -17,17 +17,17 @@ fi
 
 cd ~/
 
-mkdir /home/ubuntu/LOGS
-
-#sudo apt-get update -y
-#sudo apt-get upgrade -y
-#sudo apt-get dist-upgrade -y
-
+mkdir ~/LOGS
 mkdir ~/Downloads
+
+
+
 sudo add-apt-repository ppa:libreoffice/ppa -y
 sudo apt-get upgrade -y 
 sudo apt-get install libreoffice-core -y
+
 sudo apt-get install python3-venv python3-pip -y
+
 sudo apt-get install xvfb -y
 sudo apt-get install xdg-utils -y
 sudo apt-get install libxml2-dev libxslt-dev -y
@@ -73,7 +73,7 @@ while [ ! -z "$1" ]; do
         --default)
             # Action for DEFAULT CONFIGURATION
             echo "MOVING AND ENABLING SERVICE"
-            echo "xvfb-run -a /home/ubuntu/mchp/bin/python3 /home/ubuntu/MCHP_CONFIGS/DEFAULT/pyhuman/human.py >> /home/ubuntu/LOGS/\$(date '+%Y-%m-%d_%H-%M-%S').mchp.log" > /home/ubuntu/run_mchp.sh
+            echo "xvfb-run -a ~/mchp/bin/python3 ~/MCHP_CONFIGS/DEFAULT/pyhuman/human.py >> /home/ubuntu/LOGS/\$(date '+%Y-%m-%d_%H-%M-%S').mchp.log" > /home/ubuntu/run_mchp.sh
             sudo cp /home/ubuntu/MCHP_CONFIGS/DEFAULT/default_mchp.service /etc/systemd/system/
             sudo systemctl enable --now default_mchp
             sudo systemctl status default_mchp
@@ -82,8 +82,8 @@ while [ ! -z "$1" ]; do
         --sleepy)
             # Action for SLEEPY CONFIGURATION
             echo "MOVING AND ENABLING SERVICE"
-            echo "xvfb-run -a /home/ubuntu/mchp/bin/python3 /home/ubuntu/MCHP_CONFIGS/SLEEPY/pyhuman/human.py >> /home/ubuntu/LOGS/\$(date '+%Y-%m-%d_%H-%M-%S').mchp.log" > /home/ubuntu/run_mchp.sh
-            sudo cp /home/ubuntu/MCHP_CONFIGS/SLEEPY/sleepy_mchp.service /etc/systemd/system/
+            echo "xvfb-run -a ~/mchp/bin/python3 ~/MCHP_CONFIGS/SLEEPY/pyhuman/human.py >> ~/LOGS/\$(date '+%Y-%m-%d_%H-%M-%S').mchp.log" > ~/run_mchp.sh
+            sudo cp ~/MCHP_CONFIGS/SLEEPY/sleepy_mchp.service /etc/systemd/system/
             sudo systemctl enable --now sleepy_mchp
             sudo systemctl status sleepy_mchp
             ;;
@@ -91,41 +91,10 @@ while [ ! -z "$1" ]; do
         --dopey)
             # Action for SLEEPY CONFIGURATION
             echo "MOVING AND ENABLING SERVICE"
-            echo "xvfb-run -a /home/ubuntu/mchp/bin/python3 /home/ubuntu/MCHP_CONFIGS/DOPEY/pyhuman/human.py >> /home/ubuntu/LOGS/\$(date '+%Y-%m-%d_%H-%M-%S').mchp.log" > /home/ubuntu/run_mchp.sh
-            sudo cp /home/ubuntu/MCHP_CONFIGS/DOPEY/dopey_mchp.service /etc/systemd/system/
+            echo "xvfb-run -a ~/mchp/bin/python3 ~/MCHP_CONFIGS/DOPEY/pyhuman/human.py >> ~/LOGS/\$(date '+%Y-%m-%d_%H-%M-%S').mchp.log" > ~/run_mchp.sh
+            sudo cp ~/MCHP_CONFIGS/DOPEY/dopey_mchp.service /etc/systemd/system/
             sudo systemctl enable --now dopey_mchp
             sudo systemctl status dopey_mchp
-            ;;
-
-        #DEFAULT BUT CHROME
-        --grumpy)
-            # Action for SLEEPY CONFIGURATION
-            echo "MOVING AND ENABLING SERVICE"
-            echo "xvfb-run -a /home/ubuntu/mchp/bin/python3 /home/ubuntu/MCHP_CONFIGS/GRUMPY/pyhuman/human.py >> /home/ubuntu/LOGS/\$(date '+%Y-%m-%d_%H-%M-%S').mchp.log" > /home/ubuntu/run_mchp.sh
-            sudo cp /home/ubuntu/MCHP_CONFIGS/GRUMPY/grumpy_mchp.service /etc/systemd/system/
-            sudo systemctl enable --now grumpy_mchp
-            sudo systemctl status grumpy_mchp
-            ;;
-
-        #SLEEPY BUT CHROME
-        --happy)
-            # Action for SLEEPY CONFIGURATION
-            echo "MOVING AND ENABLING SERVICE"
-            echo "xvfb-run -a /home/ubuntu/mchp/bin/python3 /home/ubuntu/MCHP_CONFIGS/HAPPY/pyhuman/human.py >> /home/ubuntu/LOGS/\$(date '+%Y-%m-%d_%H-%M-%S').mchp.log" > /home/ubuntu/run_mchp.sh
-            sudo cp /home/ubuntu/MCHP_CONFIGS/HAPPY/happy_mchp.service /etc/systemd/system/
-            sudo systemctl enable --now happy_mchp
-            sudo systemctl status happy_mchp
-            ;;
-
-
-        #DOPEY BUT CHROME
-        --sneezy)
-            # Action for DOPEY/SNEEZY CONFIGURATION
-            echo "MOVING AND ENABLING SERVICE"
-            echo "xvfb-run -a /home/ubuntu/mchp/bin/python3 /home/ubuntu/MCHP_CONFIGS/SNEEZY/pyhuman/human.py >> /home/ubuntu/LOGS/\$(date '+%Y-%m-%d_%H-%M-%S').mchp.log" > /home/ubuntu/run_mchp.sh
-            sudo cp /home/ubuntu/MCHP_CONFIGS/SNEEZY/sneezy_mchp.service /etc/systemd/system/
-            sudo systemctl enable --now sneezy_mchp
-            sudo systemctl status sneezy_mchp
             ;;
             
             
