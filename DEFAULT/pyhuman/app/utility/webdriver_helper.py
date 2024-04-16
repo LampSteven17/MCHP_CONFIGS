@@ -23,7 +23,7 @@ class WebDriverHelper(BaseDriverHelper):
                 self._driver = webdriver.Firefox(service=self._driver_path, options=self.options) 
             
             
-            except (Exception e):
+            except Exception as e:
                 print(e)
                 print("FOUND GECKO DRIVER, BUT FAILED TO INSTANTIATE WEBDRIVER")
                 return False
@@ -37,7 +37,7 @@ class WebDriverHelper(BaseDriverHelper):
                 self._driver_path = ChromeService(ChromeDriverManager().install())
                 self._driver = webdriver.Chrome(service=self._driver_path, options=self.options)
             
-            except (Exception e):
+            except Exception as e:
                 print(e)
                 print("CHROME NOT FOUND OR INSTALLED PROPERLY")
                 return False
