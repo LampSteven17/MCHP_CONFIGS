@@ -14,8 +14,8 @@ TASK_INTERVAL_SECONDS = 10
 GROUPING_INTERVAL_SECONDS = 500 #3600
 EXTRA_DEFAULTS = []
 
-GO_TO_BED_START = 0 #time(22,randint(0,59),randint(0,59))
-GO_TO_BED_END = 0 #time(8,randint(0,59),randint(0,59))
+GO_TO_BED_START = '23:59:59' #time(22,randint(0,59),randint(0,59))
+GO_TO_BED_END = '00:00:00' #time(8,randint(0,59),randint(0,59))
 
 SLEEP_TIME_AMOUNT_MIN = 0 #14400
 SLEEP_TIME_AMOUNT_MAX = 0 #43200
@@ -30,7 +30,7 @@ def emulation_loop(clustersize, workflows, taskinterval, taskgroupinterval, gtbs
             workflows[index].action(extra)
         sleep(random.randrange(taskgroupinterval))
         
-        if datetime.datetime.now().time() > time(gtbstart) or datetime.datetime.now().time() < time(gtbend):
+        if datetime.datetime.now().time() > datetime.datetime.strptime(gtbstart, '%H:%M:%S').time() or datetime.datetime.now().time() < datetime.datetime.strptime(gtbend, '%H:%M:%S').time():
             sleepyTime = randint(sleepmin, sleepmax) 
             print("SLEEPING FOR",sleepyTime,"SECONDS")
             sleep(sleepyTime)
