@@ -3,15 +3,22 @@ import signal
 import os
 import random
 import sys
+import datetime
 from importlib import import_module
 from time import sleep
-
+from datetime import time
+from random import randint
 
 TASK_CLUSTER_COUNT = 5
 TASK_INTERVAL_SECONDS = 10
-GROUPING_INTERVAL_SECONDS = 500
+GROUPING_INTERVAL_SECONDS = 500 #3600
 EXTRA_DEFAULTS = []
 
+GO_TO_BED_START = time(0) #time(22,randint(0,59),randint(0,59))
+GO_TO_BED_END = time(0) #time(8,randint(0,59),randint(0,59))
+
+SLEEP_TIME_AMOUNT_MIN = 0 #14400
+SLEEP_TIME_AMOUNT_MAX = 0 #43200
 
 def emulation_loop(workflows, clustersize, taskinterval, taskgroupinterval, extra):
     while True:
@@ -21,6 +28,11 @@ def emulation_loop(workflows, clustersize, taskinterval, taskgroupinterval, extr
             print(workflows[index].display)
             workflows[index].action(extra)
         sleep(random.randrange(taskgroupinterval))
+        
+        if datetime.datetime.now().time() > GO_TO_BED_START or datetime.datetime.now().time() < GO_TO_BED_END:
+            SLEEPYTIME = randint(SLEEP_TIME_AMOUNT_MIN, SLEEP_TIME_AMOUNT_MAX)
+            print("SLEEPING FOR",SLEEPYTIME,"SECONDS")
+            sleep(SLEEPYTIME)
 
 
 def import_workflows():
@@ -63,6 +75,12 @@ if __name__ == '__main__':
     parser.add_argument('--clustersize', type=int, default=TASK_CLUSTER_COUNT)
     parser.add_argument('--taskinterval', type=int, default=TASK_INTERVAL_SECONDS)
     parser.add_argument('--taskgroupinterval', type=int, default=GROUPING_INTERVAL_SECONDS)
+
+    parser.add_argument('--gtbstart', type=int, default=GO_TO_BED_START)
+    parser.add_argument('--gtbend', type=int, default=GO_TO_BED_END)
+    parser.add_argument('--sleepmin', type=int, default=SLEEP_TIME_AMOUNT_MIN)
+    parser.add_argument('--sleepmax', type=int, default=SLEEP_TIME_AMOUNT_MAX)
+
     parser.add_argument('--extra', nargs='*', default=EXTRA_DEFAULTS)
     args = parser.parse_args()
 

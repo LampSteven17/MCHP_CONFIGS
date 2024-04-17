@@ -95,12 +95,12 @@ while [ ! -z "$1" ]; do
 
         --sleepy)
             echo "INSTALLING SLEEPY MCHP"
-            cp $installDir/MCHP_CONFIGS/SLEEPY/human.py $installDir/MCHP_CONFIGS/DEFAULT/pyhuman/
+            echo "xvfb-run -a $installDir/mchp/bin/python3 $installDir/MCHP_CONFIGS/DEFAULT/pyhuman/human.py >> $installDir/LOGS/\$(date '+%Y-%m-%d_%H-%M-%S').mchp.log" > $installDir/run_mchp.sh
             ;;
 
         --dopey)
             echo "INSTALLING DOPEY MCHP"
-            cp $installDir/MCHP_CONFIGS/DOPEY/human.py $installDir/MCHP_CONFIGS/DEFAULT/pyhuman/
+            echo "xvfb-run -a $installDir/mchp/bin/python3 $installDir/MCHP_CONFIGS/DEFAULT/pyhuman/human.py >> $installDir/LOGS/\$(date '+%Y-%m-%d_%H-%M-%S').mchp.log" > $installDir/run_mchp.sh
             ;;
             
             
@@ -118,8 +118,6 @@ while [ ! -z "$1" ]; do
     esac
     shift
 done
-
-echo "xvfb-run -a $installDir/mchp/bin/python3 $installDir/MCHP_CONFIGS/DEFAULT/pyhuman/human.py >> $installDir/LOGS/\$(date '+%Y-%m-%d_%H-%M-%S').mchp.log" > $installDir/run_mchp.sh
 
 echo "ENABLING SYSTEMCTL"
 sudo cp $installDir/mchp.service /etc/systemd/system/
