@@ -14,13 +14,14 @@ TASK_INTERVAL_SECONDS = 10
 GROUPING_INTERVAL_SECONDS = 500 #3600
 EXTRA_DEFAULTS = []
 
-GO_TO_BED_START = time(0) #time(22,randint(0,59),randint(0,59))
-GO_TO_BED_END = time(0) #time(8,randint(0,59),randint(0,59))
+GO_TO_BED_START = 0 #time(22,randint(0,59),randint(0,59))
+GO_TO_BED_END = 0 #time(8,randint(0,59),randint(0,59))
 
 SLEEP_TIME_AMOUNT_MIN = 0 #14400
 SLEEP_TIME_AMOUNT_MAX = 0 #43200
 
-def emulation_loop(workflows, clustersize, taskinterval, taskgroupinterval, extra):
+def emulation_loop(clustersize, workflows, taskinterval, taskgroupinterval, gtbstart, gtbend,
+        sleepmin, sleepmax, extra):
     while True:
         for c in range(clustersize):
             sleep(random.randrange(taskinterval))
@@ -29,10 +30,10 @@ def emulation_loop(workflows, clustersize, taskinterval, taskgroupinterval, extr
             workflows[index].action(extra)
         sleep(random.randrange(taskgroupinterval))
         
-        if datetime.datetime.now().time() > GO_TO_BED_START or datetime.datetime.now().time() < GO_TO_BED_END:
-            SLEEPYTIME = randint(SLEEP_TIME_AMOUNT_MIN, SLEEP_TIME_AMOUNT_MAX)
-            print("SLEEPING FOR",SLEEPYTIME,"SECONDS")
-            sleep(SLEEPYTIME)
+        if datetime.datetime.now().time() > time(gtbstart) or datetime.datetime.now().time() < time(gtbend):
+            sleepyTime = randint(sleepmin, sleepmax) 
+            print("SLEEPING FOR",sleepyTime,"SECONDS")
+            sleep(sleepyTime)
 
 
 def import_workflows():
@@ -54,7 +55,9 @@ def load_module(root, file):
     return getattr(workflow_module, 'load')()
 
 
-def run(clustersize, taskinterval, taskgroupinterval, extra):
+def run(clustersize, taskinterval, taskgroupinterval, gtbstart, gtbend,
+        sleepmin, sleepmax, extra):
+
     random.seed()
     workflows = import_workflows()
 
@@ -66,8 +69,9 @@ def run(clustersize, taskinterval, taskgroupinterval, extra):
     signal.signal(signal.SIGINT, signal_handler)
     signal.signal(signal.SIGTERM, signal_handler)
 
-    emulation_loop(workflows=workflows, clustersize=clustersize, taskinterval=taskinterval,
-                    taskgroupinterval=taskgroupinterval, extra=extra)
+    emulation_loop(clustersize=clustersize, workflows=workflows, taskinterval=taskinterval,
+                    taskgroupinterval=taskgroupinterval, gtbstart=gtbstart,gtbend=gtbend,
+                    sleepmin=sleepmin, sleepmax=sleepmax, extra=extra)
 
 
 if __name__ == '__main__':
@@ -89,6 +93,14 @@ if __name__ == '__main__':
             clustersize=args.clustersize,
             taskinterval=args.taskinterval,
             taskgroupinterval=args.taskgroupinterval,
+            
+            gtbstart=args.gtbstart,
+            gtbend=args.gtbend,
+            sleepmin=args.sleepmin,
+            sleepmax=args.sleepmax,
+
+
+
             extra=args.extra
         )
     except KeyboardInterrupt:
