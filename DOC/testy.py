@@ -1,15 +1,14 @@
-from litellm import completion
-import os
+from pytrends.request import TrendReq
 
-## set ENV variables
-os.environ["OPENAI_API_KEY"] = "your-openai-key"
-os.environ["COHERE_API_KEY"] = "your-cohere-key"
+pytrends = TrendReq(hl='en-US', tz=360)  # 'hl' for language, 'tz' for timezone offset (e.g., US CST)
+# Get worldwide trending searches
+trending_searches_worldwide = pytrends.trending_searches()
 
-messages = [{ "content": "Hello, how are you?","role": "user"}]
+# Get trending searches for a specific location (e.g., United States)
+trending_searches_us = pytrends.trending_searches(pn='united_states')
 
-# openai call
-response = completion(model="gpt-3.5-turbo", messages=messages)
+print("Worldwide Trending Searches:")
+print(trending_searches_worldwide)  # Show top trending searches worldwide
 
-# cohere call
-response = completion(model="command-nightly", messages=messages)
-print(response)
+print("\nUnited States Trending Searches:")
+print(trending_searches_us)  # Show top trending searches in the United States
