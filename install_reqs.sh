@@ -96,7 +96,7 @@ while [ ! -z "$1" ]; do
 
         --sleepy)
             echo "INSTALLING SLEEPY MCHP"
-            echo "xvfb-run -a $installDir/mchp/bin/python3 $installDir/MCHP_CONFIGS/DEFAULT/pyhuman/human.py --gtbstart='22:00:00'--gtbend='4:00:00' --sleepmin=4 --sleepmax=10 >> $installDir/LOGS/\$(date '+%Y-%m-%d_%H-%M-%S').mchp.log" > $installDir/run_mchp.sh
+            echo "xvfb-run -a $installDir/mchp/bin/python3 $installDir/MCHP_CONFIGS/DEFAULT/pyhuman/human.py --gtbstart='22:00:00'--gtbend='04:00:00' --sleepmin=4 --sleepmax=10 >> $installDir/LOGS/\$(date '+%Y-%m-%d_%H-%M-%S').mchp.log" > $installDir/run_mchp.sh
             ;;
 
         --dopey)
