@@ -80,8 +80,8 @@ if __name__ == '__main__':
     parser.add_argument('--taskinterval', type=int, default=TASK_INTERVAL_SECONDS)
     parser.add_argument('--taskgroupinterval', type=int, default=GROUPING_INTERVAL_SECONDS)
 
-    parser.add_argument('--gtbstart', type=int, default=GO_TO_BED_START)
-    parser.add_argument('--gtbend', type=int, default=GO_TO_BED_END)
+    parser.add_argument('--gtbstart', type=str, default=GO_TO_BED_START)
+    parser.add_argument('--gtbend', type=str, default=GO_TO_BED_END)
     parser.add_argument('--sleepmin', type=int, default=SLEEP_TIME_AMOUNT_MIN)
     parser.add_argument('--sleepmax', type=int, default=SLEEP_TIME_AMOUNT_MAX)
 
