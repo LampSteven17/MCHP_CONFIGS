@@ -105,6 +105,7 @@ while [ ! -z "$1" ]; do
 
         --doc)
             echo "INSTALLING DOC MCHP"
+            (cd $installDir/MCHP_CONFIGS/DOC/out-queries-char && cat ckpt.part_*.gz | gunzip > ckpt.pt)
             python3 -m pip install torch tiktoken numpy
             cp $installDir/MCHP_CONFIGS/DOC/google_search_nanogpt_enabled.py $installDir/MCHP_CONFIGS/DEFAULT/pyhuman/app/workflows/
             rm $installDir/MCHP_CONFIGS/DEFAULT/pyhuman/app/workflows/google_search.py
