@@ -15,7 +15,7 @@ WORKFLOW_DESCRIPTION = 'Search for something on Google'
 DEFAULT_WAIT_TIME = 2
 MAX_PAGES = 5
 MAX_NAVIGATION_CLICKS = 5
-SEARCH_LIST = 'MCHP_CONFIGS/DEFAULT/pyhuman/data/google_searches.txt'
+SEARCH_LIST = 'google_searches.txt'
 
 
 def load():

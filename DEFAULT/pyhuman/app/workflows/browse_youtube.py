@@ -21,7 +21,7 @@ MIN_WAIT_TIME = 2 # Minimum amount of time to wait after searching, in seconds
 MAX_WAIT_TIME = 5 # Maximum amount of time to wait after searching, in seconds
 MAX_SUGGESTED_VIDEOS = 10
 
-SEARCH_LIST = 'MCHP_CONFIGS/DEFAULT/pyhuman/data/browse_youtube.txt'
+SEARCH_LIST = 'browse_youtube.txt'
 
 def load():
     driver = WebDriverHelper()
