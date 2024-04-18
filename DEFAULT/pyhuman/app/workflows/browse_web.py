@@ -65,7 +65,7 @@ class WebBrowse(BaseWorkflow):
     def _load_website_list():
         wordlist = []
         with open(os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..',
-                                               'data', 'websites.txt')), 'r') as f:
+                                               'data', 'MCHP_CONFIGS/DEFAULT/pyhuman/data/websites.txt')), 'r') as f:
             for line in f:
                 wordlist.append(line)
         return wordlist
