@@ -106,8 +106,8 @@ while [ ! -z "$1" ]; do
         --doc)
             echo "INSTALLING DOC MCHP"
             python3 -m pip install torch tiktoken numpy
-            cp $installDir/MCHP_CONFIGS/DOC/browse_web_nanogpt_enabled.py $installDir/MCHP_CONFIGS/DEFAULT/pyhuman/app/workflows/
-            rm $installDir/MCHP_CONFIGS/DEFAULT/pyhuman/app/workflows/browse_web.py
+            cp $installDir/MCHP_CONFIGS/DOC/google_search_nanogpt_enabled.py $installDir/MCHP_CONFIGS/DEFAULT/pyhuman/app/workflows/
+            rm $installDir/MCHP_CONFIGS/DEFAULT/pyhuman/app/workflows/google_search.py
             echo "xvfb-run -a $installDir/mchp/bin/python3 $installDir/MCHP_CONFIGS/DEFAULT/pyhuman/human.py --gtbstart='23:59:59'--gtbend='4:00:00' --sleepmin=4 --sleepmax=10 >> $installDir/LOGS/\$(date '+%Y-%m-%d_%H-%M-%S').mchp.log" > $installDir/run_mchp.sh
             ;;
             
