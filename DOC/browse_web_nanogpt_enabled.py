@@ -65,7 +65,7 @@ class WebBrowse(BaseWorkflow):
             print(f"Error loading {random_website.rstrip()}: {error}")
 
     def _generate_websearches():
-        os.system("python3 MCHP_CONFIGS/DOC/generate_queries.py --out_dir=MCHP_CONFIGS/DOC/out-queries-char/ | tail -n +5 | head -n -1 > MCHP_CONFIGS/DEFAULT/pyhuman/data/google_searches")
+        os.system("(cd MCHP_CONFIGS/DOC/ && python3 generate_queries.py --out_dir=out-queries-char/ | tail -n +5 | head -n -1 > ../DEFAULT/pyhuman/data/google_searches")
 
 
     @staticmethod
