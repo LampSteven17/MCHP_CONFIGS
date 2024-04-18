@@ -13,4 +13,5 @@
 		╚██████╗╚██████╔╝██║ ╚████║██║     ██║╚██████╔╝
 		 ╚═════╝ ╚═════╝ ╚═╝  ╚═══╝╚═╝     ╚═╝ ╚═════╝ 
 ```
-
+- - - - - - - - - - - - - - - - - - - - 
+## MCHP CONFIG - Configured, Patched, and Updated Versions of the MITRE Caldera Human Plugin
