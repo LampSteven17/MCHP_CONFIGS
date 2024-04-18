@@ -91,6 +91,7 @@ while [ ! -z "$1" ]; do
             # Action for DEFAULT CONFIGURATION
             echo "INSTALLING DEFAULT MCHP"
             echo "DEFAULT CONFIGURATION CHOSEN: NO CHANGES MADE TO human.py"
+            echo "xvfb-run -a $installDir/mchp/bin/python3 $installDir/MCHP_CONFIGS/DEFAULT/pyhuman/human.py >> $installDir/LOGS/\$(date '+%Y-%m-%d_%H-%M-%S').mchp.log" > $installDir/run_mchp.sh
             ;;
 
         --sleepy)
