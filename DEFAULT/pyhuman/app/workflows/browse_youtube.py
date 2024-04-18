@@ -55,7 +55,7 @@ class YoutubeSearch(BaseWorkflow):
         sleep(random.randrange(MIN_WAIT_TIME, MAX_WAIT_TIME))
 
         # Click on a random video from the search results
-        WebDriverWait(self.driver.driver, 10).until(EC.presence_of_all_elements_located((By.ID, "video-title")))
+        WebDriverWait(self.driver.driver, 10).until(EC.presence_of_all_elements_located((By.ID, "title-wrapper")))
         search_results = self.driver.driver.find_elements(By.ID, "title-wrapper")
         search_results[random.randrange(0, len(search_results)-1)].click()
         sleep(random.randrange(MIN_WATCH_TIME, MAX_WATCH_TIME))
