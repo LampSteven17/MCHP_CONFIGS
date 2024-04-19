@@ -94,8 +94,8 @@ if __name__ == '__main__':
             taskinterval=args.taskinterval,
             taskgroupinterval=args.taskgroupinterval,
             
-            gtbstart=args.gtbstart,
-            gtbend=args.gtbend,
+            gtbstart=args.gtbstart.split('=')[1],
+            gtbend=args.gtbend.split('=')[1],
             sleepmin=args.sleepmin,
             sleepmax=args.sleepmax,
 
