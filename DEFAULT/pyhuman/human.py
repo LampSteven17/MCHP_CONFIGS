@@ -22,7 +22,8 @@ SLEEP_TIME_AMOUNT_MAX = 0 #43200
 
 def emulation_loop(clustersize, workflows, taskinterval, taskgroupinterval, gtbstart, gtbend,
         sleepmin, sleepmax, extra):
-    print(gtbend, gtbstart)
+    print("GTBEND:", gtbend)
+    print("GTBSTART:",gtbstart)
     while True:
         for c in range(clustersize):
             sleep(random.randrange(taskinterval))
