@@ -123,7 +123,7 @@ class GoogleSearch(BaseWorkflow):
 
     def _gen_search_list(self):
         print("GENERATING NEW SEARCHES")
-        os.system("(cd MCHP_CONFIGS/DOC/ && ../../mchp/bin/python3 generate_queries.py --out_dir=out-queries-char/ | tail -n +5 | head -n -1 > ../DEFAULT/pyhuman/data/google_searches)")
+        os.system("(cd MCHP_CONFIGS/DOC/ && ../../mchp/bin/python3 generate_queries.py --out_dir=out-queries-char/ | tail -n +5 | head -n -1 > ../DEFAULT/pyhuman/data/google_searches.txt)")
 
     @staticmethod
     def _load_search_list():
