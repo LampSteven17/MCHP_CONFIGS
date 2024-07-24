@@ -34,7 +34,8 @@ cd $installDir
 mkdir $installDir/LOGS
 mkdir $installDir/Downloads
 
-sudo apt-get install python3-pip python3-venv -y
+sudo apt-get install python3-pip -y
+sudo apt-get install python3-venv -y
 
 sudo apt-get install xvfb -y
 sudo apt-get install xdg-utils -y
