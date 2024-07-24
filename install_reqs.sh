@@ -43,6 +43,8 @@ sudo apt-get install python3-tk python3-dev -y
 
 echo "CREATING PYTHON3 ENVIROMENT MCHP"
 
+
+
 python3 -m venv mchp
 source mchp/bin/activate
 
