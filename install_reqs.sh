@@ -34,6 +34,8 @@ cd $installDir
 mkdir $installDir/LOGS
 mkdir $installDir/Downloads
 
+sudo apt-get update -y
+
 sudo apt-get install python3-pip -y
 sudo apt-get install python3-venv -y
 
