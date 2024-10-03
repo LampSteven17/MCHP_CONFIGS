@@ -117,6 +117,14 @@ while [ ! -z "$1" ]; do
             rm $installDir/MCHP_CONFIGS/DEFAULT/pyhuman/app/workflows/google_search.py
             echo "xvfb-run -a $installDir/mchp/bin/python3 $installDir/MCHP_CONFIGS/DEFAULT/pyhuman/human.py --gtbstart='22:00:00' --gtbend='4:00:00' --sleepmin=14400 --sleepmax=36000 >> $installDir/LOGS/\$(date '+%Y-%m-%d_%H-%M-%S').mchp.log" > $installDir/run_mchp.sh
             ;;
+
+        --grumpy)
+            echo "INSTALLING GRUMPY MCHP"
+            echo "GRUMPY CONFIGURATION CHOSEN: NO CHANGES MADE TO human.py"
+            echo "xvfb-run -a $installDir/mchp/bin/python3 $installDir/MCHP_CONFIGS/DEFAULT/pyhuman/human.py >> $installDir/LOGS/\$(date '+%Y-%m-%d_%H-%M-%S').mchp.log" > $installDir/run_mchp.sh
+            rm $installDir/MCHP_CONFIGS/DEFAULT/pyhuman/app/workflows/browse_youtube.py
+            rm $installDir/MCHP_CONFIGS/DEFAULT/pyhuman/app/workflows/browse_web.py
+            ;;
             
 
         --help)
