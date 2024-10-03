@@ -119,11 +119,30 @@ while [ ! -z "$1" ]; do
             ;;
 
         --grumpy)
+            #ONLY GOOGLE SEARCHES
             echo "INSTALLING GRUMPY MCHP"
             echo "GRUMPY CONFIGURATION CHOSEN: NO CHANGES MADE TO human.py"
             echo "xvfb-run -a $installDir/mchp/bin/python3 $installDir/MCHP_CONFIGS/DEFAULT/pyhuman/human.py >> $installDir/LOGS/\$(date '+%Y-%m-%d_%H-%M-%S').mchp.log" > $installDir/run_mchp.sh
             rm $installDir/MCHP_CONFIGS/DEFAULT/pyhuman/app/workflows/browse_youtube.py
             rm $installDir/MCHP_CONFIGS/DEFAULT/pyhuman/app/workflows/browse_web.py
+            ;;
+
+        --happy)
+            #ONLY BROWSES THE WEB
+            echo "INSTALLING GRUMPY MCHP"
+            echo "GRUMPY CONFIGURATION CHOSEN: NO CHANGES MADE TO human.py"
+            echo "xvfb-run -a $installDir/mchp/bin/python3 $installDir/MCHP_CONFIGS/DEFAULT/pyhuman/human.py >> $installDir/LOGS/\$(date '+%Y-%m-%d_%H-%M-%S').mchp.log" > $installDir/run_mchp.sh
+            rm $installDir/MCHP_CONFIGS/DEFAULT/pyhuman/app/workflows/browse_youtube.py
+            rm $installDir/MCHP_CONFIGS/DEFAULT/pyhuman/app/workflows/google_search.py
+            ;;
+
+        --bashful)
+            #ONLY BROWSES YOUTUBE
+            echo "INSTALLING GRUMPY MCHP"
+            echo "GRUMPY CONFIGURATION CHOSEN: NO CHANGES MADE TO human.py"
+            echo "xvfb-run -a $installDir/mchp/bin/python3 $installDir/MCHP_CONFIGS/DEFAULT/pyhuman/human.py >> $installDir/LOGS/\$(date '+%Y-%m-%d_%H-%M-%S').mchp.log" > $installDir/run_mchp.sh
+            rm $installDir/MCHP_CONFIGS/DEFAULT/pyhuman/app/workflows/browse_web.py
+            rm $installDir/MCHP_CONFIGS/DEFAULT/pyhuman/app/workflows/google_search.py
             ;;
             
 
