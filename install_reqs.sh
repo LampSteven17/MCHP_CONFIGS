@@ -144,6 +144,16 @@ while [ ! -z "$1" ]; do
             rm $installDir/MCHP_CONFIGS/DEFAULT/pyhuman/app/workflows/browse_web.py
             rm $installDir/MCHP_CONFIGS/DEFAULT/pyhuman/app/workflows/google_search.py
             ;;
+
+        --browsy)
+            # Action for DEFAULT CONFIGURATION
+            echo "INSTALLING BROWSING HEAVY MCHP"
+            rm $installDir/MCHP_CONFIGS/DEFAULT/pyhuman/human.py
+            mv $installDir/MCHP_CONFIGS/BROWSY/human.py $installDir/MCHP_CONFIGS/DEFAULT/pyhuman/
+            rm $installDir/MCHP_CONFIGS/DEFAULT/pyhuman/app/workflows/spawn_shell.py
+            rm $installDir/MCHP_CONFIGS/DEFAULT/pyhuman/app/workflows/execute_command.py
+            echo "xvfb-run -a $installDir/mchp/bin/python3 $installDir/MCHP_CONFIGS/DEFAULT/pyhuman/human.py >> $installDir/LOGS/\$(date '+%Y-%m-%d_%H-%M-%S').mchp.log" > $installDir/run_mchp.sh
+            ;;
             
 
         --help)
